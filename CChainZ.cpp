@@ -1,6 +1,6 @@
 /// Código en C++.
 /// By: LawlietJH
-/// Versión: v1.1.2
+/// Versión: v1.1.3
 /// CChainZ.cpp
 
 /* Convertidor de Base N a Base M
@@ -306,7 +306,8 @@ string ADec(string CadE, int Base1, int Base2, string CadS)
     string Salida;
     int Tam = CadE.length();
     int Num = 0;
-    unsigned long long int Suma = 0;
+    unsigned long long int Suma1 = 0;
+    long double Suma2 = 0;
     int x = 0, y = Tam;
 
     if(Base1 == 1)
@@ -332,10 +333,17 @@ string ADec(string CadE, int Base1, int Base2, string CadS)
         else if(Aux == "J"){Aux = "19";}
 
         istringstream(Aux) >> Num;
-        Suma += Num * pow(Base1,x);
+        Suma1 += Num * pow(Base1,x);
+        Suma2 += Num * pow(Base1,x);
+
     }
 
-    Salida = static_cast<ostringstream*>(&(ostringstream() << Suma))->str();
+    Salida = static_cast<ostringstream*>(&(ostringstream() << Suma1))->str();
+
+    if(Salida == "0")
+    {
+        Salida = static_cast<ostringstream*>(&(ostringstream() << Suma2))->str();
+    }
 
     return Salida;
 }
